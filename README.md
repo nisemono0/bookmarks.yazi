@@ -62,7 +62,7 @@ The following are the default configurations:
 ```lua
 -- ~/.config/yazi/init.lua
 require("bookmarks"):setup({
-	last_directory = { enable = false, persist = false, mode="dir" },
+	last_directory = { enable = false, persist = false, mode = "dir", key = "'" },
 	persist = "none",
 	desc_format = "full",
 	file_pick_mode = "hover",
@@ -83,6 +83,8 @@ require("bookmarks"):setup({
 
 When enabled, a new bookmark is automatically created in `'` which allows the user to jump back to
 the last directory.
+
+It's also possible to change `'` to another key.
 
 There's also the option to enable persistence to this automatic bookmark.
 
