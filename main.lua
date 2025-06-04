@@ -93,6 +93,7 @@ end)
 local _load_last = ya.sync(function(state)
 	ps.sub_remote("@bookmarks-last", function(body)
 		state.last_dir = body
+		state.last_dir.on = state.last_directory_key
 
 		if state.last_mode ~= "dir" then
 			ps.unsub_remote("@bookmarks-last")
@@ -104,7 +105,7 @@ local _save_last = ya.sync(function(state, persist, imediate)
 	local file = _get_bookmark_file()
 
 	local curr = {
-		on = "'",
+		on = state.last_directory_key,
 		desc = _generate_description(file),
 		path = tostring(file.url),
 		is_parent = file.is_parent,
@@ -306,6 +307,10 @@ return {
 		end
 
 		if type(args.last_directory) == "table" then
+			state.last_directory_key = "'"
+			if type(args.last_directory.key) == "string" then
+				state.last_directory_key = args.last_directory.key
+			end
 			if args.last_directory.enable then
 				if args.last_directory.mode == "mark" then
 					state.last_persist = args.last_directory.persist
