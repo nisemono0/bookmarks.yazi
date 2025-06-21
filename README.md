@@ -18,7 +18,7 @@ https://github.com/dedukun/bookmarks.yazi/assets/25795432/9a9fe345-dd06-442e-99f
 ## Installation
 
 ```sh
-ya pack -a dedukun/bookmarks
+ya pkg add dedukun/bookmarks
 ```
 
 ## Import/Export bookmarks
